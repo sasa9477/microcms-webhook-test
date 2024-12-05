@@ -4,6 +4,7 @@ on:
 
 jobs:
   show-client-payload:
+    if: github.event.client_payload.service == 'hosting-research'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -14,7 +15,5 @@ jobs:
           echo "Client payload: ${{ toJson(github.event.client_payload) }}"
 
       - name: service
-        if: github.event.client_payload.service == 'hosting-research'
         run: |
           echo "Service is hosting-research"
-          echo "Client payload: ${{ toJson(github.event.client_payload) }}"
