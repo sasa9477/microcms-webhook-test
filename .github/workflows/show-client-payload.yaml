@@ -11,5 +11,10 @@ jobs:
     steps:
       - name: Show client payload
         run: |
-          echo "Client payload: ${{ github.event.client_payload }}"
+          echo "Client payload: ${{ toJson(github.event.client_payload) }}"
+
+      - name: service
+        if: github.event.client_payload.service == 'hosting-research'
+        run: |
+          echo "Service is hosting-research"
           echo "Client payload: ${{ toJson(github.event.client_payload) }}"
