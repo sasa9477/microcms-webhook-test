@@ -1,0 +1,15 @@
+on:
+  repository_dispatch:
+    types: [deploy-public-private]
+
+jobs:
+  show-client-payload:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Show client payload
+        run: |
+          echo "Client payload: ${{ github.event.client_payload }}"
+          echo "Client payload: ${{ toJson(github.event.client_payload) }}"
